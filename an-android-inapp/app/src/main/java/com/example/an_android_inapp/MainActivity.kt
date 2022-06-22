@@ -25,6 +25,7 @@ import java.util.*
 
 import android.net.Uri
 import android.view.View
+import android.webkit.WebViewClient
 
 
 class MainActivity : AppCompatActivity() {
@@ -104,7 +105,7 @@ class MainActivity : AppCompatActivity() {
                 surveySetup!!.emailHashed,
                 surveySetup!!.joined,
                 "Something customised by you!"
-            );
+            )
             Log.d("Survey slug request: ", "https://" + surveySetup!!.domainKey + ".asknice.ly/service/inapp.php " + uuid)
             val call: Call<AskNicelySurveySlugResponse> =
                 GenericApiClient.getInstance().api.getSurveySlug(
@@ -122,8 +123,23 @@ class MainActivity : AppCompatActivity() {
                     surveySlugData = response.body()
                     if(surveySlugData != null) {
                         Log.d("Survey setup result: ", if(surveySlugData!!.slug != null) surveySlugData!!.slug else "No Slug")
-                        val myWebView: WebView = findViewById(R.id.webview)
-                        myWebView.settings.javaScriptEnabled = true
+                        val askNicelyWebView: WebView = findViewById(R.id.webview)
+                        askNicelyWebView.settings.javaScriptEnabled = true
+
+                        askNicelyWebView.webViewClient = object : WebViewClient() {
+                            override fun onPageFinished(view: WebView, url: String) {
+
+                                val css = "https://static.asknice.ly/dist/standalone/asknicely-in-app-conversation.css"
+                                val js = "var link = document.createElement('link'); " +
+                                        "link.setAttribute('href','$css'); " +
+                                        "link.setAttribute('rel', 'stylesheet'); " +
+                                        "link.setAttribute('type','text/css'); " +
+                                        "document.head.appendChild(link);"
+                                askNicelyWebView.evaluateJavascript(js,null)
+                                super.onPageFinished(view, url)
+                            }
+                        }
+
                         val builder: Uri.Builder = Uri.Builder()
                         builder.scheme("https")
                             .authority(surveySetup!!.domainKey + ".asknice.ly")
@@ -135,11 +151,11 @@ class MainActivity : AppCompatActivity() {
                             .appendQueryParameter("reloadcookie", "")
                             .appendQueryParameter("template_name", surveySetup!!.templateName)
                             .appendQueryParameter("source", "ajax")
-                            .appendQueryParameter("anVersion", "3.4.1");
-                        val anUrl: String = builder.build().toString();
+                            .appendQueryParameter("anVersion", "3.4.1")
+                        val anUrl: String = builder.build().toString()
                         Log.d("Survey URL generated:", anUrl)
-                        myWebView.loadUrl(anUrl)
-                        myWebView.visibility = View.VISIBLE
+                        askNicelyWebView.loadUrl(anUrl)
+                        askNicelyWebView.visibility = View.VISIBLE
                     }
                 }
 
