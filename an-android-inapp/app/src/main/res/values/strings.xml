@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">an-android-inapp</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">AskNicely Example App</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Click the envelope below to display your survey!</string>
+</resources>
