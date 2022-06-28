@@ -1,5 +1,6 @@
 package com.example.an_android_inapp
 
+import AskNicelyAppInterface
 import AskNicelySurveySetupResponse
 import AskNicelySurveySlugRequest
 import AskNicelySurveySlugResponse
@@ -124,6 +125,7 @@ class MainActivity : AppCompatActivity() {
                     if(surveySlugData != null) {
                         Log.d("Survey setup result: ", if(surveySlugData!!.slug != null) surveySlugData!!.slug else "No Slug")
                         val askNicelyWebView: WebView = findViewById(R.id.webview)
+                        askNicelyWebView.addJavascriptInterface(AskNicelyAppInterface(applicationContext, askNicelyWebView), "askNicelyInterface")
                         askNicelyWebView.settings.javaScriptEnabled = true
 
                         askNicelyWebView.webViewClient = object : WebViewClient() {
@@ -145,13 +147,9 @@ class MainActivity : AppCompatActivity() {
                             .authority(surveySetup!!.domainKey + ".asknice.ly")
                             .appendPath("email")
                             .appendPath("conversation")
-                            .appendPath("in-app")
                             .appendPath(surveySlugData!!.slug)
-                            .appendQueryParameter("id", uuid)
-                            .appendQueryParameter("reloadcookie", "")
                             .appendQueryParameter("template_name", surveySetup!!.templateName)
-                            .appendQueryParameter("source", "ajax")
-                            .appendQueryParameter("anVersion", "3.4.1")
+                            .appendQueryParameter("inapp", "")
                         val anUrl: String = builder.build().toString()
                         Log.d("Survey URL generated:", anUrl)
                         askNicelyWebView.loadUrl(anUrl)
