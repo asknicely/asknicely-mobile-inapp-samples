@@ -6,6 +6,7 @@ import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 public interface GenericApi {
+    //Replace this with the endpoint that you will be retrieving your survey setup from.
     String BASE_URL = "http://10.0.2.2:8083";
 
     @GET("/")

@@ -28,7 +28,6 @@ import android.net.Uri
 import android.view.View
 import android.webkit.WebViewClient
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -60,15 +59,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
@@ -81,12 +76,12 @@ class MainActivity : AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 
+    //Get your particular survey setup.  The exact nature of the request will depend on your server's setup and requirements.
     private fun getAskNicelySurveySetup() {
         val call: Call<AskNicelySurveySetupResponse> = GenericApiClient.getInstance().api.surveySetup
         call.enqueue(object : Callback<AskNicelySurveySetupResponse> {
             override fun onResponse(call: Call<AskNicelySurveySetupResponse>?, response: Response<AskNicelySurveySetupResponse>) {
                 surveySetup = response.body()
-                Log.d("Survey setup result: ", surveySetup.toString())
             }
 
             override fun onFailure(call: Call<AskNicelySurveySetupResponse>, t: Throwable) {
@@ -97,7 +92,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun showAskNicelySurvey() {
         if (surveySetup != null) {
+            //For the slug request, we require a one-use dash-free 16 length uuid to prevent duplicate spam.
             val uuid = UUID.randomUUID().toString().replace("-", "").take(16)
+            //Do the actual slug request.
             val slugRequest = AskNicelySurveySlugRequest(
                 surveySetup!!.domainKey,
                 surveySetup!!.templateName,
@@ -107,7 +104,6 @@ class MainActivity : AppCompatActivity() {
                 surveySetup!!.joined,
                 "Something customised by you!"
             )
-            Log.d("Survey slug request: ", "https://" + surveySetup!!.domainKey + ".asknice.ly/service/inapp.php " + uuid)
             val call: Call<AskNicelySurveySlugResponse> =
                 GenericApiClient.getInstance().api.getSurveySlug(
                     "https://" + surveySetup!!.domainKey + ".asknice.ly/service/inapp.php",
@@ -123,35 +119,28 @@ class MainActivity : AppCompatActivity() {
                 ) {
                     surveySlugData = response.body()
                     if(surveySlugData != null) {
-                        Log.d("Survey setup result: ", if(surveySlugData!!.slug != null) surveySlugData!!.slug else "No Slug")
+                        //Set up your WebView to allow it to connect to AskNicely's webpage.
                         val askNicelyWebView: WebView = findViewById(R.id.webview)
+                        //Our surveys expect a Javascript Interface by the name of 'askNicelyInterface'
                         askNicelyWebView.addJavascriptInterface(AskNicelyAppInterface(applicationContext, askNicelyWebView), "askNicelyInterface")
+                        //Our surveys run on Javascript, so make sure to enable it.
                         askNicelyWebView.settings.javaScriptEnabled = true
 
-                        askNicelyWebView.webViewClient = object : WebViewClient() {
-                            override fun onPageFinished(view: WebView, url: String) {
-
-                                val css = "https://static.asknice.ly/dist/standalone/asknicely-in-app-conversation.css"
-                                val js = "var link = document.createElement('link'); " +
-                                        "link.setAttribute('href','$css'); " +
-                                        "link.setAttribute('rel', 'stylesheet'); " +
-                                        "link.setAttribute('type','text/css'); " +
-                                        "document.head.appendChild(link);"
-                                askNicelyWebView.evaluateJavascript(js,null)
-                                super.onPageFinished(view, url)
-                            }
-                        }
-
+                        //Build the URL that will display your survey.
                         val builder: Uri.Builder = Uri.Builder()
+                        //We serve everything over https for security.
                         builder.scheme("https")
+                            //This can be baked into your app, but we suggest providing it with your survey setup response.
                             .authority(surveySetup!!.domainKey + ".asknice.ly")
                             .appendPath("email")
                             .appendPath("conversation")
+                            //Provide the slug generated ealier here.
                             .appendPath(surveySlugData!!.slug)
+                            //The template that you wish to display.
                             .appendQueryParameter("template_name", surveySetup!!.templateName)
+                            //Prevents certain web-only actions from being taken.
                             .appendQueryParameter("inapp", "")
                         val anUrl: String = builder.build().toString()
-                        Log.d("Survey URL generated:", anUrl)
                         askNicelyWebView.loadUrl(anUrl)
                         askNicelyWebView.visibility = View.VISIBLE
                     }
