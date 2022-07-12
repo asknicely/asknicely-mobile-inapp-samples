@@ -7,31 +7,34 @@
 
 import SwiftUI
 
+extension NSNotification {
+    static let ShowAskNicelySurvey = Notification.Name.init("ShowAskNicelySurvey")
+    static let HideAskNicelySurvey = Notification.Name.init("HideAskNicelySurvey")
+}
+
 @main
 struct an_ios_inappApp: App {
+    @State private var showingSurvey = false
     
     init() {
-        let url = URL(string: "http://localhost:8080")!
-    
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-    
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data = data, let string = String(data: data, encoding: .utf8){
-                UserDefaults.standard.register(defaults: [
-                    "surveySetupData": string
-                ])
-            } else if let error = error {
-                print("HTTP Request Failed \(error)")
-            }
-        }
+        let task = getANSetup()
     
         task.resume()
     }
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if showingSurvey {
+                AskNicelySurveyView(messageHandler: AskNicelyMessageHandler())
+                    .onReceive(NotificationCenter.default.publisher(for: NSNotification.HideAskNicelySurvey)) { _ in
+                        showingSurvey = false
+                    }
+            } else {
+                ContentView()
+                    .onReceive(NotificationCenter.default.publisher(for: NSNotification.ShowAskNicelySurvey)) { _ in
+                        showingSurvey = true
+                    }
+            }
         }
     }
 }

@@ -11,6 +11,8 @@
 		F441C9C62876433900C0427B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F441C9C52876433900C0427B /* ContentView.swift */; };
 		F441C9C82876433E00C0427B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F441C9C72876433E00C0427B /* Assets.xcassets */; };
 		F441C9CB2876433E00C0427B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F441C9CA2876433E00C0427B /* Preview Assets.xcassets */; };
+		FDB99BB1287B90E7007BB8A6 /* AskNicelyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB99BB0287B90E7007BB8A6 /* AskNicelyClient.swift */; };
+		FDB99BB3287BB963007BB8A6 /* AskNicelySurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB99BB2287BB963007BB8A6 /* AskNicelySurveyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,9 @@
 		F441C9C52876433900C0427B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F441C9C72876433E00C0427B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F441C9CA2876433E00C0427B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FDAA6187287CF72300A9C5BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FDB99BB0287B90E7007BB8A6 /* AskNicelyClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskNicelyClient.swift; sourceTree = "<group>"; };
+		FDB99BB2287BB963007BB8A6 /* AskNicelySurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskNicelySurveyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +56,13 @@
 		F441C9C22876433900C0427B /* an-ios-inapp */ = {
 			isa = PBXGroup;
 			children = (
+				FDAA6187287CF72300A9C5BF /* Info.plist */,
 				F441C9C32876433900C0427B /* an_ios_inappApp.swift */,
 				F441C9C52876433900C0427B /* ContentView.swift */,
 				F441C9C72876433E00C0427B /* Assets.xcassets */,
 				F441C9C92876433E00C0427B /* Preview Content */,
+				FDB99BB0287B90E7007BB8A6 /* AskNicelyClient.swift */,
+				FDB99BB2287BB963007BB8A6 /* AskNicelySurveyView.swift */,
 			);
 			path = "an-ios-inapp";
 			sourceTree = "<group>";
@@ -137,8 +145,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDB99BB3287BB963007BB8A6 /* AskNicelySurveyView.swift in Sources */,
 				F441C9C62876433900C0427B /* ContentView.swift in Sources */,
 				F441C9C42876433900C0427B /* an_ios_inappApp.swift in Sources */,
+				FDB99BB1287B90E7007BB8A6 /* AskNicelyClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +279,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"an-ios-inapp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "an-ios-inapp/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -297,6 +308,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"an-ios-inapp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "an-ios-inapp/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
