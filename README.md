@@ -48,4 +48,4 @@ AskNicely's in-app survey flow requires a few steps done in sequence:
 We are currently not accepting contributions from outside our organisation.
 
 ## License
-[AskNicely not currently allowing the licensing of any part of this repository.  It is only being provided as an example of our survey process flow](https://choosealicense.com/no-permission/)
+[AskNicely is not currently allowing the licensing of any part of this repository.  It is only being provided as an example of our survey process flow](https://choosealicense.com/no-permission/)
