@@ -1,4 +1,7 @@
 # AskNicely In-App Mobile Integrations
+![ezgif-5-6dfa9f696c](https://user-images.githubusercontent.com/1980623/182768649-c97b1362-5930-4869-8890-846814b00061.gif)
+
+
 
 A set of sample code for integrating your AskNicely survey directly into your app, via the use of standard iOS/Android functionality and a little touch of AskNicely magic.
 
