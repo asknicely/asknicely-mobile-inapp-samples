@@ -6,10 +6,11 @@
 A set of sample code for integrating your AskNicely survey directly into your app, via the use of standard iOS/Android functionality and a little touch of AskNicely magic.
 
 ## Contents
-There are three folders in this repository:
+There are four folders in this repository:
 - `sample-server` contains an example of setting up the survey and, most importantly, generating a e-mail hash for your user to allow them to securely connect to AskNicely.
 - `an-ios-inapp` contains a simple app showing the standard flow for retrieving the above e-mail hash from your backend, using that to generate a unique slug for the survey, and then presenting it to your user - and hiding the survey when they've completed it (positively, no doubt!)
 - `an-android-inapp` does the same as the iOS example, but for Android!
+- `ANReactNativeInapp` provides a simple example of integrating with React Native.
 
 ## Installation
 
