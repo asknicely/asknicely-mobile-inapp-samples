@@ -38,6 +38,13 @@ The code will load up a simple Node-based server and begin listening to local co
 ##### iOS/Android Code Samples
 You should be able to simply load the code into your workspace with no further troubles; just build and away you go.  The sample apps here have been built with the most standard libraries recommended by Apple and Google, and tested under their standard simulators.
 
+##### React Native Code Sample
+This may require some additional steps to get running.  We're using iOS as an example here:
+1. Run `yarn install` from ANReactNativeInapp
+2. Make sure to have XCode and Cocoapods installed
+3. Change directory into `ANReactNativeInapp/ios` and run pod install
+4. Run `yarn ios` to launch the React Native app. Optionally run `yarn start` to run Metro to see error/warning logging, reload the app and open developer menu
+
 ## Process Flow High Level Overview
 AskNicely's in-app survey flow requires a few steps done in sequence:
  - Firstly, generating a email hash using your email hash *key* (see above) and the user's email, which then needs to actually reach your user.  An example of this can be found in [server.js](/sample-server/server.js), which will respond to any request with said credentials.
