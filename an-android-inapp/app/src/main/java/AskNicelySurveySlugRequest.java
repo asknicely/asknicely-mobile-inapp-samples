@@ -13,7 +13,7 @@ public class AskNicelySurveySlugRequest {
     @SerializedName("email")
     private final String email;
     @SerializedName("email_hash")
-    private final String emailHashed;
+    private final String emailHash;
     @SerializedName("created")
     private final String created;
     @SerializedName("force")
@@ -28,7 +28,7 @@ public class AskNicelySurveySlugRequest {
             String templateName,
             String name,
             String email,
-            String emailHashed,
+            String emailHash,
             String created,
             String aCustomProperty
     ) {
@@ -36,7 +36,7 @@ public class AskNicelySurveySlugRequest {
         this.templateName = templateName;
         this.name = name;
         this.email = email;
-        this.emailHashed = emailHashed;
+        this.emailHash = emailHash;
         this.created = created;
         this.aCustomProperty = aCustomProperty;
         this.force = true;
@@ -58,8 +58,8 @@ public class AskNicelySurveySlugRequest {
         return this.email;
     }
 
-    public String getEmailHashed() {
-        return this.emailHashed;
+    public String getEmailHash() {
+        return this.emailHash;
     }
 
     public String getCreated() {

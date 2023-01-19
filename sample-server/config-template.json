@@ -4,7 +4,7 @@
         "template_name": "you_target_survey_name",
         "name": "User Name",
         "email": "user_email@or.identifier",
-        "joined": "1655857923"
+        "created": "1655857923"
     },
     "server_params": {
         "port": 8080,

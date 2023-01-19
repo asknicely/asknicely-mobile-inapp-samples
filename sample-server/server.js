@@ -35,10 +35,10 @@ async function startup() {
       res.setHeader('Content-Type', 'application/json');
       res.writeHead(200);
 
-      const email_hashed = signHmacSha256(data.server_params.email_hash, data.request_params.email);
+      const email_hash = signHmacSha256(data.server_params.email_hash, data.request_params.email);
 
       const result = {
-        email_hashed,
+        email_hash,
         ...data.request_params
       };
       res.end(JSON.stringify(result));

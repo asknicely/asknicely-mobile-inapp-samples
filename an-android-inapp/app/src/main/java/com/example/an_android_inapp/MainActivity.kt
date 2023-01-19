@@ -100,8 +100,8 @@ class MainActivity : AppCompatActivity() {
                 surveySetup!!.templateName,
                 surveySetup!!.name,
                 surveySetup!!.email,
-                surveySetup!!.emailHashed,
-                surveySetup!!.joined,
+                surveySetup!!.emailHash,
+                surveySetup!!.created,
                 "Something customised by you!"
             )
             val call: Call<AskNicelySurveySlugResponse> =

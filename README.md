@@ -20,7 +20,7 @@ For the request itself:
  - Template Name:  The name of the survey template that you wish to use.  Please see your available templates on *domainkey*.asknice.ly/setting/email.
  - Name: The name of the user receiving the survey.
  - Email: The email of the user receiving the survey.
- - Joined: When the user was created/joined your organisation.
+ - Created: When the user was created/joined your organisation.
 
 For getting the server up and running:
  - Port:  Which port the server should run on.

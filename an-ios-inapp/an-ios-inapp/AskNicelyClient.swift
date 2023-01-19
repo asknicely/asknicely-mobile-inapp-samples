@@ -33,8 +33,8 @@ func getANSlug(force: Bool, aCustomProperty: String) -> URLSessionDataTask {
         "template_name": surveySetupData["template_name"]!,
         "name": surveySetupData["name"]!,
         "email": surveySetupData["email"]!,
-        "email_hash": surveySetupData["email_hashed"]!,
-        "created": surveySetupData["joined"]!,
+        "email_hash": surveySetupData["email_hash"]!,
+        "created": surveySetupData["created"]!,
         "force": force,
         "a_custom_property": aCustomProperty
     ]

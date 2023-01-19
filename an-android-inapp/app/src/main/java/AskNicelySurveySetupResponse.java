@@ -11,18 +11,18 @@ public class AskNicelySurveySetupResponse {
     private final String name;
     @SerializedName("email")
     private final String email;
-    @SerializedName("email_hashed")
-    private final String emailHashed;
-    @SerializedName("joined")
-    private final String joined;
+    @SerializedName("email_hash")
+    private final String emailHash;
+    @SerializedName("created")
+    private final String created;
 
-    public AskNicelySurveySetupResponse(String domainKey, String templateName, String name, String email, String emailHashed, String joined) {
+    public AskNicelySurveySetupResponse(String domainKey, String templateName, String name, String email, String emailHash, String created) {
         this.domainKey = domainKey;
         this.templateName = templateName;
         this.name = name;
         this.email = email;
-        this.emailHashed = emailHashed;
-        this.joined = joined;
+        this.emailHash = emailHash;
+        this.created = created;
     }
 
     public String getDomainKey() {
@@ -41,12 +41,12 @@ public class AskNicelySurveySetupResponse {
         return this.email;
     }
 
-    public String getEmailHashed() {
-        return this.emailHashed;
+    public String getEmailHash() {
+        return this.emailHash;
     }
 
-    public String getJoined() {
-        return this.joined;
+    public String getCreated() {
+        return this.created;
     }
 
     @NonNull
